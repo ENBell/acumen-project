@@ -1,0 +1,10 @@
+### Acumen To Do ###
+
+1. I need to figure out how to handle traffic splitting among variations in a test. 
+	- The user should be able to configure how much traffic they want to go to each variation
+	- default should be even split between all variants
+
+2. Request comes in on a site level. From there I need to determine active tests. Once I have active tests I need to determine which variations are in those tests. Then I can random.randrange within them. 
+
+3. to do the targeting variations (pick audiences, show on certain pages), I'll probably have to write javascript that will pass that info in a request header so that I can determin whether to show something or exclude it all together. 
+
