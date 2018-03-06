@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
 	path('', views.home),
-    path('acubox', views.acubox_view),
+    path('acubox/<site_id>/',views.acubox_view),
+
 ]

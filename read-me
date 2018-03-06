@@ -1,10 +1,15 @@
 ### Acumen To Do ###
 
+3/4/18
 1. I need to figure out how to handle traffic splitting among variations in a test. 
 	- The user should be able to configure how much traffic they want to go to each variation
 	- default should be even split between all variants
 
-2. Request comes in on a site level. From there I need to determine active tests. Once I have active tests I need to determine which variations are in those tests. Then I can random.randrange within them. 
+2. Perhaps create wildcard paths that can be written to the view when a new site/user is created. Then you path could be used to pull up their active tests. n a Request comes in on a site/user level. From there I need to determine active tests. Once I have active tests I need to determine which variations are in those tests. Then I can random.randrange within them.
+	+ 3/5/18 This is correct. In urls.py I set a path with a <keyword> (in my test it was <ianid>), this keyword is then past in to the view. I can alter my view to take in the keyword, and then pass that to the page in a CONTEXT dictionary. This should allow me to locate a user/company/site/organization and then go through logic to determine what tests are active for them. 
 
 3. to do the targeting variations (pick audiences, show on certain pages), I'll probably have to write javascript that will pass that info in a request header so that I can determin whether to show something or exclude it all together. 
 
+3/5/18
+
+All id numbers must will start at 1000 because in python you can't have leading 0's. (this is to differentiate from Octal literals. #huh)
