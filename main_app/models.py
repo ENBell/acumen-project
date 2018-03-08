@@ -3,10 +3,25 @@ from django.db import models
 # Create your models here. These will be created in the sql database.
 # for each of these I can set an option of primary_key=True in order to make that field the unique identifier. 
 
-class Acubox(models.Model):
-	name = models.CharField(max_length=250)
-	contents= models.TextField()
-	content_type= models.CharField(max_length=250)
+class Site(models.Model):
+	account_name = models.CharField(max_length=250) # account/site name
+	account_id = models.CharField(max_length=250) # unique identifier for the account
+	active_tests = models.TextField() # list of currently active testids
+	associated_tests = models.TextField() # ID's (testids) of tests associated wit this Site/ Account 
+
+	def __str__(self):
+		return self.account_name
+
+class Test_details(models.Model):
+	name = models.CharField(max_length=250) # name of the test
+	linked_varids =  models.CharField(max_length=10000) # ID's (varids) of the variations associated with the test
+	num_variations = models.IntegerField(default=1) # of variations this test has (REMOVE? CAN'T I JUST LEN() THE LINKED VARIDS?)
+	testid = models.IntegerField(default=1000) #unique id of the test
+	site = models.ForeignKey(
+		Site, 
+		on_delete=models.CASCADE,
+		default='1'
+		)
 
 	def __str__(self):
 		return self.name
@@ -23,23 +38,15 @@ class Variation(models.Model):
 	varid = models.IntegerField(default=1000) # unique id for the variation
 
 	def __str__(self):
-		return self.name
+		return "%s : %s" % (self.name, self.varid)
 
-class Test_details(models.Model):
-	name = models.CharField(max_length=250) # name of the test
-	linked_varids =  models.CharField(max_length=10000) # ID's (varids) of the variations associated with the test
-	num_variations = models.IntegerField(default=1) # of variations this test has (REMOVE? CAN'T I JUST LEN() THE LINKED VARIDS?)
-	testid = models.IntegerField(default=1000) #unique id of the test
+class Acubox(models.Model):
+	class Meta:
+		verbose_name_plural='Acuboxes'
 
-	def __str__(self):
-		return self.name
-
-class Site(models.Model):
-	account_name = models.CharField(max_length=250) # account/site name
-	account_id = models.CharField(max_length=250) # unique identifier for the account
-	active_tests = models.TextField() # list of currently active testids
-	associated_tests = models.TextField() # ID's (testids) of tests associated wit this Site/ Account 
+	name = models.CharField(max_length=250)
+	contents= models.TextField()
+	content_type= models.CharField(max_length=250)
 
 	def __str__(self):
-		return self.account_name
-
+		return self.name

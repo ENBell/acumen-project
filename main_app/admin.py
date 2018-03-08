@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Acubox
+from .models import Site, Test_details, Variation, Acubox
 
 
 
@@ -8,4 +8,4 @@ from .models import Acubox
 
 
 # Register your models here.
-admin.site.register(Acubox)
+admin.site.register([Site, Test_details, Variation, Acubox])

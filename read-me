@@ -13,3 +13,11 @@
 3/5/18
 
 All id numbers must will start at 1000 because in python you can't have leading 0's. (this is to differentiate from Octal literals. #huh)
+
+
+3/6/18
+
+fuuuuuuu this is really frustrating. I really want to make this work. I've stayed up til nearly 1am 3 nights in a row. soooooooo
+okay, I'm currently going down a path wher I have separate queries for a test and a variation and then stitch them back together later. What if I just did variations, but had an attribute on them for the test they were a part of? so tests were just a name, and not really an object. Then I could start my query right at the heart, instead of having to dip down from the top. Further, I could also store an account/site id on every variation. and then just do a single filter for variations where Site = this site, test=active, maybe through a psuedo-django join? Maybe then I could maintain separate structures... I don't know I have to read more and my eyes are bleeding. 
+
+READ ABOUT MANYTOMANY FIELDS
